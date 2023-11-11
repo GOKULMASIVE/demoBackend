@@ -16,7 +16,8 @@ console.log("Mongo is connected");
 
 app.use(express.json());
 app.use(cors({
-   origin:"*"
+   origin:"*",
+   credentials:true
 }))
 app.use("/students",StudentsRouter);
 
