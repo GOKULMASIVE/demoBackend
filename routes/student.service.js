@@ -1,11 +1,9 @@
 import {client} from '../index.js';
 import nodemailer from "nodemailer"
 import Mailgen from 'mailgen';
-import cors from "cors";
-import express from 'express'
+import xoauth2 from 'xoauth2';
 
 
-express().use(cors())
 export async function getAllStudents(){
     return await client.db("Demo").collection("students").find().toArray();
 }
@@ -30,13 +28,15 @@ export async function updateStudent(id,data){
 export function sendMail(data,req,res){
     
       
-    var sender= nodemailer.createTransport({
-        service:"gmail",
-        auth:{
-            user:process.env.Email,
-            pass:process.env.Password
-        }
-    })
+    var sender = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        // xoauth2: xoauth2.createXOAuth2Generator({
+          user: process.env.Email,
+          pass: process.env.Password,
+        // }),
+      },
+    });
 
     let mailgenarator=new Mailgen({
         theme:"default",
