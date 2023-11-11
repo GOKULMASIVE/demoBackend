@@ -7,3 +7,11 @@ export async function getAllStudents(){
 export async function insertStudentData(data){
     return await client.db("Demo").collection("students").insertOne(data);
 }
+
+export async function deleteStudent(id){
+    return await client.db("Demo").collection("students").deleteOne({_id:id});
+}
+
+export async function updateStudent(id){
+    return await client.db("Demo").collection("students").updateOne({_id:id});
+}
