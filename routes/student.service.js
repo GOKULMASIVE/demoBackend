@@ -49,9 +49,7 @@ export function sendMail(data,req,res){
             table:{
                 data:[
                     {
-                        // item:"Nodemailer Stack Book",
-                        // description:"A Backend Application",
-                        // price:"$10",
+                      
                         StudentName:data.name,
                         Maths:data.maths,
                         Physics:data.physics,
