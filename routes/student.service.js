@@ -12,6 +12,6 @@ export async function deleteStudent(id){
     return await client.db("Demo").collection("students").deleteOne({_id:id});
 }
 
-export async function updateStudent(id){
-    return await client.db("Demo").collection("students").updateOne({_id:id});
+export async function updateStudent(id,data){
+    return await client.db("Demo").collection("students").updateOne({_id:id},{$set:data});
 }

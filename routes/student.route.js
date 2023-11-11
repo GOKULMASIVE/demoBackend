@@ -23,8 +23,9 @@ router.delete("/:id",async function(req,res){
 
 router.put("/:id",async function(req,res){
     const{id}=req.params;
+    const data=req.body
     const objId=new ObjectId(id);
-    const result=await updateStudent(objId);
+    const result=await updateStudent(objId,data);
     res.send(result);
 })
 
