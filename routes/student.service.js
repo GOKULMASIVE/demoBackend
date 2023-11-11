@@ -1,11 +1,14 @@
 import {client} from '../index.js';
+import nodemailer from "nodemailer"
+import Mailgen from 'mailgen';
 
 export async function getAllStudents(){
     return await client.db("Demo").collection("students").find().toArray();
 }
 
 export async function getStudentById(id){
-    return client.db("Demo").collection("students").findOne();
+    
+    return client.db("Demo").collection("students").findOne({_id:id});
 }
 
 export async function insertStudentData(data){
@@ -18,4 +21,68 @@ export async function deleteStudent(id){
 
 export async function updateStudent(id,data){
     return await client.db("Demo").collection("students").updateOne({_id:id},{$set:data});
+}
+
+export function sendMail(data,req,res){
+    
+      
+    var sender= nodemailer.createTransport({
+        service:"gmail",
+        auth:{
+            user:process.env.Email,
+            pass:process.env.Password
+        }
+    })
+
+    let mailgenarator=new Mailgen({
+        theme:"default",
+        product:{
+            name:"Mailgen",
+            link:"https://mailgen.js/"
+        }
+    })
+
+    let response={
+        body:{
+            name:data.name,
+            intro:"Your mark has arrived!",
+            table:{
+                data:[
+                    {
+                        // item:"Nodemailer Stack Book",
+                        // description:"A Backend Application",
+                        // price:"$10",
+                        StudentName:data.name,
+                        Maths:data.maths,
+                        Physics:data.physics,
+                        Chemistry:data.chemistry,
+                        Total:data.total,
+                        Cutoff:data.cutoff
+
+                    }
+                ]
+            },
+            outro:"Have a successfull future😄✨🏆"
+        }
+    }
+
+    let mail=mailgenarator.generate(response)
+
+    var composemail={
+        from:process.env.Email,
+        to:data.email,
+        subject:"Your marks with cutoff",
+        html:mail
+    }
+
+    sender.sendMail(composemail).then(()=>{
+        return res.status(201).json({
+            msg:"you should receive an email",
+        })
+    }).catch(error=>{
+        return res.status(500).json({error})
+    })
+
+    
+
 }
