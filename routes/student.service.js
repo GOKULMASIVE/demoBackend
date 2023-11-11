@@ -39,9 +39,7 @@ export async function sendMail(data,req,res){
           pass: process.env.Password,
         // }),
       },
-      tls:{
-        rejectUnauthorized:false,
-      }
+      
     });
 
     let mailgenarator=new Mailgen({
