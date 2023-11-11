@@ -16,10 +16,7 @@ console.log("Mongo is connected");
 
 app.use(express.json());
 app.use(
-  cors({
-    origin: "http://localhost:3000",
-    optionsSuccessStatus:200,
-  })
+  cors()
 );
 
 app.use((req,res,next)=>{

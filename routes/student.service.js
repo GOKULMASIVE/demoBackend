@@ -1,8 +1,8 @@
 import {client} from '../index.js';
 import nodemailer from "nodemailer"
 import Mailgen from 'mailgen';
-import xoauth2 from 'xoauth2';
-
+import cors from "cors"
+import express from "express"
 
 export async function getAllStudents(){
     return await client.db("Demo").collection("students").find().toArray();
@@ -24,6 +24,8 @@ export async function deleteStudent(id){
 export async function updateStudent(id,data){
     return await client.db("Demo").collection("students").updateOne({_id:id},{$set:data});
 }
+
+express().options("*",cors());
 
 export async function sendMail(data,req,res){
     
