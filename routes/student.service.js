@@ -37,8 +37,8 @@ export function sendMail(data,req,res){
     let mailgenarator=new Mailgen({
         theme:"default",
         product:{
-            name:"Mailgen",
-            link:"https://mailgen.js/"
+            name:"DemoMail",
+            link:"https://demomail.js/"
         }
     })
 
