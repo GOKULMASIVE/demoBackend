@@ -3,7 +3,7 @@ import * as dotenv from "dotenv"
 import express from "express";
 import StudentsRouter from './routes/student.route.js'
 import cors from "cors"
-
+import bodyParser from "body-parser"
 dotenv.config();
 const app=express();
 
@@ -19,20 +19,17 @@ app.use(
   cors()
 );
 
-app.use((req,res,next)=>{
-   res.setHeader("Access-Control-Allow-Origin","*");
-   res.setHeader("Access-Control-Request-Method","*");
-   res.setHeader("Access-Control-Allow-Methods","GET,PUT,POST,DELETE,PATCH");
-   res.setHeader("Access-Control-Allow-Headers","Content-Type");
-   res.setHeader("Access-Control-Expose-Headers","Content-Type");
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+   extended:false
+}))
 
-   if(req.method==="OPTIONS"){
-      res.writeHead(200);
-      return res.end();
-   }else{
-      return next();
-   }
+app.use((req,res,next)=>{
+   res.header("Access-Control-Allow-Origin","*");
+   res.header("Access-Control-Headers","Content-Type");
+   next();
 })
+
 app.use("/students",StudentsRouter);
 
  app.get('/',function(req,res){

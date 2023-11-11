@@ -30,7 +30,8 @@ export async function sendMail(data,req,res){
     
       
     var sender = nodemailer.createTransport({
-        
+      host:"smtp.gmail.com",
+      port:587,
       service: "gmail",
       auth: {
         // xoauth2: xoauth2.createXOAuth2Generator({
@@ -38,7 +39,9 @@ export async function sendMail(data,req,res){
           pass: process.env.Password,
         // }),
       },
-      
+      tls:{
+        rejectUnauthorized:false
+      }
     });
 
     let mailgenarator=new Mailgen({
