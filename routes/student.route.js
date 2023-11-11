@@ -1,10 +1,17 @@
 import express from "express"
-import {getAllStudents,insertStudentData,deleteStudent,updateStudent} from './student.service.js'
+import {getAllStudents,insertStudentData,deleteStudent,updateStudent,getStudentById} from './student.service.js'
 import { ObjectId } from "mongodb";
 const router=express.Router();
 
 router.get("/",async function(req,res){
     const result=await getAllStudents();
+    res.send(result);
+})
+
+router.get("/:id",async function(req,res){
+    const{id}=req.params;
+    const objId=new ObjectId(id);
+    const result=await getStudentById(objId);
     res.send(result);
 })
 
