@@ -2,6 +2,7 @@ import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv"
 import express from "express";
 import StudentsRouter from './routes/student.route.js'
+import cors from "cors"
 
 dotenv.config();
 const app=express();
@@ -14,6 +15,7 @@ await client.connect();
 console.log("Mongo is connected");
 
 app.use(express.json());
+app.use(cors())
 app.use("/students",StudentsRouter);
 
  app.get('/',function(req,res){
