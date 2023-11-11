@@ -22,7 +22,7 @@ router.get("/:id", async function (req, res) {
   const result = await getStudentById(objId);
   // const data=req.body
   // console.log(result);
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  // res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   const email= await sendMail(result,req,res);
   // res.send(email);
 });
