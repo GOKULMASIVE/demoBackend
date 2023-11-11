@@ -25,7 +25,7 @@ export async function updateStudent(id,data){
     return await client.db("Demo").collection("students").updateOne({_id:id},{$set:data});
 }
 
-export function sendMail(data,req,res){
+export async function sendMail(data,req,res){
     
       
     var sender = nodemailer.createTransport({
@@ -36,6 +36,9 @@ export function sendMail(data,req,res){
           pass: process.env.Password,
         // }),
       },
+      tls:{
+        rejectUnauthorized:false,
+      }
     });
 
     let mailgenarator=new Mailgen({
