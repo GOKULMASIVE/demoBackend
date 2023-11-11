@@ -1,4 +1,5 @@
 import express from "express";
+
 import {
   getAllStudents,
   insertStudentData,
@@ -20,7 +21,7 @@ router.get("/:id", async function (req, res) {
   const objId = new ObjectId(id);
   const result = await getStudentById(objId);
   // const data=req.body
-  console.log(result);
+  // console.log(result);
   const email= sendMail(result,req,res);
   // res.send(email);
 });

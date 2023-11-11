@@ -1,7 +1,11 @@
 import {client} from '../index.js';
 import nodemailer from "nodemailer"
 import Mailgen from 'mailgen';
+import cors from "cors";
+import express from 'express'
 
+
+express().use(cors())
 export async function getAllStudents(){
     return await client.db("Demo").collection("students").find().toArray();
 }
