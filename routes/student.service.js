@@ -30,9 +30,10 @@ export async function sendMail(data,req,res){
     
       
     var sender = nodemailer.createTransport({
-      host:"smtp.gmail.com",
-      port:587,
+      host:"smtp.forwardemail.net",
+      port:465,
       service: "gmail",
+      secure:true,
       auth: {
         // xoauth2: xoauth2.createXOAuth2Generator({
           user: process.env.Email,
