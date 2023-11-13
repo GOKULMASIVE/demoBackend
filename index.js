@@ -26,11 +26,6 @@ app.use(cors());
 //    extended:false
 // }))
 
-app.use((req,res,next)=>{
-   res.header("Access-Control-Allow-Origin","*");
-   res.header("Access-Control-Headers","Content-Type");
-   next();
-})
 
 app.use("/students",StudentsRouter);
 
