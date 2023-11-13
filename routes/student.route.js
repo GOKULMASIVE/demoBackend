@@ -17,12 +17,7 @@ router.get("/", async function (req, res) {
   res.send(result);
 });
 
-router.get("/:id",cors({
-  origin:"*",
-  methods:"GET,HEAD,PUT,POST,PATCH,DELETE",
-  preflightContinue:false,
-  optionsSuccessStatus:204
-}), async function (req, res) {
+router.get("/:id", async function (req, res) {
   const { id } = req.params;
   const objId = new ObjectId(id);
   const result = await getStudentById(objId);
