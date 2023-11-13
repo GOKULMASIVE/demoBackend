@@ -17,11 +17,11 @@ router.get("/", async function (req, res) {
   res.send(result);
 });
 
-router.post("/", async function (req, res) {
-  // const { id } = req.params;
-  // const objId = new ObjectId(id);
-  // const result = await getStudentById(objId);
-  const data=req.body
+router.post("/:id", async function (req, res) {
+  const { id } = req.params;
+  const objId = new ObjectId(id);
+  const result = await getStudentById(objId);
+  // const data=req.body
   // console.log(result);
   // res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   const email= await sendMail(data,req,res);
