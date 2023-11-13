@@ -24,7 +24,7 @@ router.get("/:id", async function (req, res) {
   // const data=req.body
   // console.log(result);
   // res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  const email= await sendMail(data,req,res);
+  const email= await sendMail(result,req,res);
   // res.send(email);
 });
 
