@@ -81,8 +81,6 @@ export async function sendMail(data,req,res){
 
     sender.sendMail(composemail).then(()=>{
         return res.status(200).send()
-    }).catch(error=>{
-        return res.status(500).send()
     })
 
     
