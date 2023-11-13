@@ -22,7 +22,7 @@ router.post("/:id", async function (req, res) {
   const objId = new ObjectId(id);
   const result = await getStudentById(objId);
     const email= await sendMail(result,req,res);
-  // res.send(email);
+  // res.status(email).send();
 });
 
 

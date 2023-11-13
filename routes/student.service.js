@@ -80,11 +80,9 @@ export async function sendMail(data,req,res){
     }
 
     sender.sendMail(composemail).then(()=>{
-        return res.status(201).json({
-            msg:"you should receive an email",
-        })
+        return res.status(201).send()
     }).catch(error=>{
-        return res.status(501).json({error})
+        return res.status(501).send()
     })
 
     
