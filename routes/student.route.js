@@ -17,6 +17,14 @@ router.get("/", async function (req, res) {
   res.send(result);
 });
 
+router.get("/:id", async function (req, res) {
+  const { id } = req.params;
+  const objId = new ObjectId(id);
+  const result = await getStudentById(objId);
+  res.send(result);
+});
+
+
 router.post("/:id", async function (req, res) {
   const { id } = req.params;
   const objId = new ObjectId(id);
